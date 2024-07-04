@@ -13,13 +13,13 @@
 	10- CentOS 
 	11- Manjaro
 ## 2. From the slides what is the man command used for?
-### man command
+### `man` command
  System-wide documentation system that provides short reference manuals (pages) for individual
  commands,API functions, concepts, configuration file syntax, file formats and is organized in sections
  (1 for user commands, 2 for system calls...). That's the traditional Unix documentation system    
 
-## 3. What is the difference between rm and rmdir using man command?
-### I- rm
+## 3. What is the difference between `rm` and `rmdir` using man command?
+### I- `rm`
 ```shell
     rm removes each specified file. By default, it does not remove directories.
     If the -I or - -interactive=once option is given, and there are more
@@ -27,7 +27,7 @@
     prompts the user for whether to proceed with the entire operation.
     If the response is not affirmative, the entire command is aborted.
 ```
-### II- rmdir
+### II- `rmdir`
 ```shell
     Remove the DIRECTORY(ies), if they are empty.
     -- ignore-fail-on-non-empty
@@ -46,7 +46,7 @@
 	<img src="https://github.com/Mina267/GP_4M_SV2_Intake3_FOTA_18/assets/71601701/88e5b617-e1b6-4544-89a7-2597d186d621" width=40% height=40% />
 </p>
 
-### a. Remove dir11 with rmdir in one-step. What did you notice? And how did you  overcome that? 
+### a. Remove dir11 with `rmdir` in one-step. What did you notice? And how did you  overcome that? 
 <p align="center">
 	<img src="https://github.com/Mina267/GP_4M_SV2_Intake3_FOTA_18/assets/71601701/7a8a5f4d-ec9c-4da0-a2f5-23443c0de6b0" width=40% height=40% />
 </p>
@@ -70,7 +70,7 @@
 
 
 
-### c. The output of the command pwd was /home/user. Write the absolute and relative path for the file mycv.
+### c. The output of the command pwd was `/home/user`. Write the absolute and relative path for the file mycv.
 #### relative path:
 ```shell
 docs/mycv
@@ -97,7 +97,7 @@ mv ~/mypasswd ~/oldpasswd
 	<img src="https://github.com/Mina267/GP_4M_SV2_Intake3_FOTA_18/assets/71601701/66fe9e76-1588-46d7-9050-22f5ef575466" width=40% height=40% />
 </p>
 
-## 7. You are in /usr/bin, list four ways to go to your home directory 
+## 7. You are in `/usr/bin`, list four ways to go to your home directory 
 ```shell
 cd ~
 cd /home/user
@@ -106,7 +106,7 @@ cd
 ```
 
 
-## 8. List Linux commands in /usr/bin that start with letter w
+## 8. List Linux commands in `/usr/bin` that start with letter w
 ```shell	
 ls /usr/bin/w*
 ```
@@ -118,7 +118,7 @@ ls /usr/bin/w*
  ### Command `type`
 #### • Display information about command typ
 
-## 10. Show 2 types of command file in /usr/bin that start with letter c
+## 10. Show 2 types of command file in `/usr/bin` that start with letter c
 ```shell
 ls /usr/bin/c*
 ls /usr/bin/c* | head -n 2
@@ -144,8 +144,8 @@ The apropos command in Unix-like operating systems is used to search the manual 
 ```shell
 apropos [keyword]
 ``` 
-#### Practical Use
-The apropos command is particularly useful when you remember part of a command's functionality but not the exact command name. It helps you quickly locate relevant man pages without needing to know the exact names.
+#### Use
+The apropos command is useful when you remember part of a command's functionality but not the exact command name. It helps you quickly locate relevant man pages without needing to know the exact names.
 
 # Last Exercice
 
@@ -173,4 +173,8 @@ git push origin main
 
 <p align="center">
 	<img src="https://github.com/Mina267/GP_4M_SV2_Intake3_FOTA_18/assets/71601701/b62693c9-504c-47f8-a9fb-6e4f7cda4859" width=40% height=40% />
+</p>
+
+<p align="center">
+	<img src="https://github.com/Mina267/GP_4M_SV2_Intake3_FOTA_18/assets/71601701/371beacb-39d5-482f-bc09-bf838bfac38d" width=40% height=40% />
 </p>
