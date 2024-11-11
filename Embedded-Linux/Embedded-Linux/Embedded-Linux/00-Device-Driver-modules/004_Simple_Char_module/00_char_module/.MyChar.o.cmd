@@ -1,0 +1,1 @@
+savedcmd_/home/mina/Modules/004_char_module/MyChar.o := ld -m elf_x86_64 -z noexecstack --no-warn-rwx-segments   -r -o /home/mina/Modules/004_char_module/MyChar.o @/home/mina/Modules/004_char_module/MyChar.mod 

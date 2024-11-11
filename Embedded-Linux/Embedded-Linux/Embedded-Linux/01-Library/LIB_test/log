@@ -1,0 +1,24 @@
+
+# static
+# output object files
+$ gcc -c -Wall  ./src/*.c && mv *.o ./obj/
+# archeive this object files to make static library
+$ ar -rcs libmylib.a ./obj/*.o && mv *.a ./lib/
+# build static main.c by using static library and make executable file
+$ gcc -static ./app/main.c -o Run -I ./Includes/ -lmylib -L./lib/
+$ ./Run 
+
+
+# output object files as field independent code  allow library to load in memory at any address
+$ gcc -c -fPIC -Wall ./src/*.c && mv *.o ./objDynamic/
+# make library executable to but in RAM
+$ gcc -shared -o ./lib/libmylib.so ./objDynamic/*.o
+# show Symbol table
+$ objdump -T ./lib/libmylib.so
+# build dynamic main.c by using dynamic library and make dynamic executable file
+$ gcc ./app/main.c -o dynamicApp -L ./lib/ -lmylib -I ./Includes/ -Wl,-rpath=./lib/
+$ ./dynamicApp 
+# extract printable strings from a binary executable or any other file that contains printable characters
+$ strings dynamicApp 
+# print the shared library dependencies of an executable or a shared library.
+$ ldd dynamicApp 

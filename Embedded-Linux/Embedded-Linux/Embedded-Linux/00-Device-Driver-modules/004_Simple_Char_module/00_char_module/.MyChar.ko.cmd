@@ -1,0 +1,1 @@
+savedcmd_/home/mina/Modules/004_char_module/MyChar.ko := ld -r -m elf_x86_64 -z noexecstack --no-warn-rwx-segments --build-id=sha1  -T scripts/module.lds -o /home/mina/Modules/004_char_module/MyChar.ko /home/mina/Modules/004_char_module/MyChar.o /home/mina/Modules/004_char_module/MyChar.mod.o
