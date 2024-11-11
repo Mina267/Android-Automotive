@@ -1,1 +1,0 @@
-savedcmd_/home/mina/Modules/004_char_module/Module.symvers :=  scripts/mod/modpost -M -m -a      -o /home/mina/Modules/004_char_module/Module.symvers -T /home/mina/Modules/004_char_module/modules.order -i Module.symvers -e 
