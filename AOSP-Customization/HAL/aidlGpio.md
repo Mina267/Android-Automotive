@@ -124,45 +124,64 @@ The service implements the AIDL interface by providing access to the HAL functio
 1. **Service File**: `GpioService.cpp`
    - **File Path**: `frameworks/aidl/services/gpio/`
    - **Content**:
-     ```cpp
-     #include <aidl/com/luxoft/gpio/BnGpioService.h>
-     #include "GpioHal.h"
-     #include <android/binder_manager.h>
-     #include <android/binder_process.h>
+        
+        ```cpp
+        // Include the necessary header files
+        #include <aidl/com/luxoft/gpio/BnGpioService.h> // Defines the base service interface for GPIO
+        #include "GpioHal.h"                           // Header for the GPIO Hardware Abstraction Layer
+        #include <android/binder_manager.h>             // Manages binder services
+        #include <android/binder_process.h>             // Manages binder process operations
 
-     using namespace aidl::com::luxoft::gpio;
+        // Use the AIDL namespace for GPIO service (aidl::com::luxoft::gpio)
+        using namespace aidl::com::luxoft::gpio;
 
-     class GpioService : public BnGpioService {
-     public:
-         GpioService() : gpioHal(new GpioHal()) {}
+        // Define the GpioService class inheriting from BnGpioService
+        class GpioService : public BnGpioService {
+        public:
+            // Constructor initializes gpioHal with a new GpioHal instance
+            GpioService() : gpioHal(new GpioHal()) {}
 
-         ndk::ScopedAStatus setGpioState(int32_t pin, bool value) override {
-             gpioHal->exportGpio(pin);
-             gpioHal->setGpioDirection(pin, "out");
-             bool result = gpioHal->setGpioValue(pin, value);
-             return result ? ndk::ScopedAStatus::ok() : ndk::ScopedAStatus::fromServiceSpecificError(-1);
-         }
+            // Override setGpioState method to set the GPIO pin state
+            ndk::ScopedAStatus setGpioState(int32_t pin, bool value) override {
+                gpioHal->exportGpio(pin);                // Exports the specified GPIO pin for use
+                gpioHal->setGpioDirection(pin, "out");   // Sets GPIO direction to "out" for output mode
+                bool result = gpioHal->setGpioValue(pin, value); // Sets GPIO value to the provided boolean
+                // Return status based on operation success
+                return result ? ndk::ScopedAStatus::ok() : ndk::ScopedAStatus::fromServiceSpecificError(-1);
+            }
 
-         ndk::ScopedAStatus getGpioState(int32_t pin, bool* value) override {
-             gpioHal->exportGpio(pin);
-             gpioHal->setGpioDirection(pin, "in");
-             bool result = gpioHal->getGpioValue(pin, *value);
-             return result ? ndk::ScopedAStatus::ok() : ndk::ScopedAStatus::fromServiceSpecificError(-1);
-         }
+            // Override getGpioState method to get the GPIO pin state
+            ndk::ScopedAStatus getGpioState(int32_t pin, bool* value) override {
+                gpioHal->exportGpio(pin);                // Exports the specified GPIO pin for use
+                gpioHal->setGpioDirection(pin, "in");    // Sets GPIO direction to "in" for input mode
+                bool result = gpioHal->getGpioValue(pin, *value); // Retrieves current GPIO value
+                // Return status based on operation success
+                return result ? ndk::ScopedAStatus::ok() : ndk::ScopedAStatus::fromServiceSpecificError(-1);
+            }
 
-     private:
-         std::unique_ptr<GpioHal> gpioHal;
-     };
+        private:
+            std::unique_ptr<GpioHal> gpioHal; // Pointer to GpioHal instance for handling GPIO operations
+        };
 
-     int main() {
-         ABinderProcess_startThreadPool();
-         std::shared_ptr<GpioService> gpioService = ndk::SharedRefBase::make<GpioService>();
-         const std::string instance = std::string() + IGpioService::descriptor + "/default";
-         AServiceManager_addService(gpioService->asBinder().get(), instance.c_str());
-         ABinderProcess_joinThreadPool();
-         return 0;
-     }
-     ```
+        // Main function to start the binder service
+        int main() {
+            ABinderProcess_startThreadPool(); // Start a thread pool for the binder process
+
+            // Create a shared pointer to the GpioService instance
+            std::shared_ptr<GpioService> gpioService = ndk::SharedRefBase::make<GpioService>();
+
+            // Define the instance name for the service (using the interface descriptor and default instance)
+            const std::string instance = std::string() + IGpioService::descriptor + "/default";
+
+            // Add the GpioService to the AIDL Service Manager under the specified instance name
+            AServiceManager_addService(gpioService->asBinder().get(), instance.c_str());
+
+            // Join the thread pool to keep the service alive and responsive to requests
+            ABinderProcess_joinThreadPool();
+
+            return 0; // End of main function (will never reach here because of joinThreadPool)
+        }
+        ```
 
 ---
 
@@ -247,3 +266,16 @@ make GpioService -j8
 ```
 
 Flash the image to your Raspberry Pi 4, and after that, you can install and test the Java client application to interact with the GPIO HAL driver through AIDL.
+
+
+
+
+
+
+
+
+
+
+
+
+
